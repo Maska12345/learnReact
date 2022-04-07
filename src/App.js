@@ -1,23 +1,21 @@
 import React, {useState} from "react";
+import Counter from "./Components/Counter";
 
 function App() {
-  const [likes , setLikes] = useState(0);
 
-  function increment() {
-      setLikes(likes + 1);
-  }
+    return (
+        <div className='App'>
+            <div className='post'>
+                <div className='post__content'>
+                    <strong>1.Java Script - top on the top</strong>
+                </div>
+                <div>
+                    <button className='post_btns'>Delete</button>
+                </div>
+            </div>
 
-  function decrement() {
-      setLikes(likes - 1);
-  }
-
-  return (
-    <div className="App">
-      <h1>{likes}</h1>
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
-    </div>
-  );
+        </div>
+    );
 }
 
 export default App;
