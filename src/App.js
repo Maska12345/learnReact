@@ -1,12 +1,20 @@
 import React, {useState} from "react";
 import Counter from "./Components/Counter";
 import PostItem from '../src/Components/PostItem';
+import PostList from "./Components/PostList";
 
 function App() {
 
+    const [posts,setPosts] = useState([
+        {id:1,title:'JavaScript 1',body:'Description'},
+        {id:2,title:'JavaScript 2',body:'Description'},
+        {id:3,title:'JavaScript 3',body:'Description'}
+        ]
+        );
+
     return (
         <div className='App'>
-           <PostItem />
+           <PostList posts={posts}  title={'Posts about JS'}/>
         </div>
     );
 }
