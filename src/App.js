@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import Counter from "./Components/Counter";
 import PostItem from '../src/Components/PostItem';
 import PostList from "./Components/PostList";
+import MyButton from "./Components/UI/button/MyButton";
+import MyInput from "./Components/UI/input/MyInput";
 
 function App() {
 
@@ -12,8 +14,24 @@ function App() {
         ]
         );
 
+    const [title,setTitle] = useState('');
+
+    const addNewPost = (e)=>{
+        e.preventDefault()
+        console.log(title)
+    }
+
     return (
         <div className='App'>
+            <form>
+                <MyInput
+                    onChange={e=>setTitle(e.target.value)}
+                    value={title}
+                    type="text"
+                    placeholder='Posts Title'/>
+                <MyInput type="text" placeholder='Posts Description'/>
+                <MyButton onClick={addNewPost}>Create Post</MyButton>
+            </form>
            <PostList posts={posts}  title={'Posts about JS'}/>
         </div>
     );
