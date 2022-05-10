@@ -4,6 +4,7 @@ import PostItem from '../src/Components/PostItem';
 import PostList from "./Components/PostList";
 import MyButton from "./Components/UI/button/MyButton";
 import MyInput from "./Components/UI/input/MyInput";
+import PostForm from "./Components/PostForm";
 
 function App() {
 
@@ -14,25 +15,27 @@ function App() {
         ]
         );
 
-    const [title,setTitle] = useState('');
 
-    const addNewPost = (e)=>{
-        e.preventDefault()
-        console.log(title)
+    const [body,setBody] = useState('');
+
+    const createPost = (newPost)=>{
+        setPosts([...posts,newPost])
     }
+
+    const removePost = (post)=>{
+        setPosts(posts.filter(p => p.id !== post.id))
+    }
+
 
     return (
         <div className='App'>
-            <form>
-                <MyInput
-                    onChange={e=>setTitle(e.target.value)}
-                    value={title}
-                    type="text"
-                    placeholder='Posts Title'/>
-                <MyInput type="text" placeholder='Posts Description'/>
-                <MyButton onClick={addNewPost}>Create Post</MyButton>
-            </form>
-           <PostList posts={posts}  title={'Posts about JS'}/>
+            <PostForm create={createPost}/>
+            {posts.length !== 0
+                ?
+                <PostList remove={removePost} posts={posts} title={'Posts about JS'}/>
+                :
+                <h1 style={{textAlign: 'center'}}>Posts not found!</h1>
+            }
         </div>
     );
 }
